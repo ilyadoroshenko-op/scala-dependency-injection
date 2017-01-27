@@ -11,7 +11,7 @@ import org.scalatest.mockito.MockitoSugar._
 /**
   * Mocking example
   */
-class DefaultUserOpsComponentTest extends FunSpec with TestEnvironment with DefaultUserOpsComponent {
+class DefaultUserOpsComponentSpec extends FunSpec with TestEnvironment with DefaultUserOpsComponent {
 
   describe(".get()") {
     it("should return username") {
