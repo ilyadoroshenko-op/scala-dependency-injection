@@ -1,7 +1,7 @@
-package observepoint.di4api.abstractfield.abstractfield
+package observepoint.di4api.implicits
 
-import observepoint.di4api.abstractfield.data.UserData
-import observepoint.di4api.abstractfield.ops.DefaultUserOps
+import observepoint.di4api.implicits.data.UserData
+import observepoint.di4api.implicits.ops.DefaultUserOps
 import org.mockito.Mockito.when
 import org.scalatest.FunSpec
 import org.scalatest.Matchers._
@@ -17,12 +17,9 @@ class DefaultUserOpsSpec extends FunSpec {
     it("should return username") {
       val userId = 1
       val userName = "super user"
-
-      val ops = new DefaultUserOps {
-        override val userData: UserData = mock[UserData]
-      }
-
-      when(ops.userData.get(userId)).thenReturn(userName)
+      implicit val userData = mock[UserData]
+      when(userData.get(userId)).thenReturn(userName)
+      val ops = new DefaultUserOps
 
       ops.get(userId) shouldEqual userName
     }

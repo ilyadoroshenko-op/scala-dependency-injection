@@ -12,9 +12,9 @@ import observepoint.di4api.abstractfield.ops.{DefaultUserOps, UserOps}
   * + namespaces to avoid diamond problem
   * + concise code
   *
-  * - manual injection: ugly when lot of dependencies
+  * - manual injection: tedious when lot of dependencies
   */
-object AbstractField extends App {
+object AbstractField extends App { app =>
 
   lazy val conn: Connection = null
 
@@ -23,7 +23,7 @@ object AbstractField extends App {
   }
 
   lazy val userOps: UserOps = new DefaultUserOps {
-    override def userData: UserData = userData //manually injecting it
+    override def userData: UserData = app.userData //manually injecting it
   }
 
   userOps.get(1)
